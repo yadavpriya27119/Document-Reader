@@ -1,0 +1,18 @@
+# Deploy on Render: Dashboard → New → Blueprint → connect repo (use this file).
+# After create, open the service → Environment → set secret values for sync:false keys.
+services:
+  - type: web
+    name: pdfreader
+    runtime: docker
+    dockerfilePath: ./Dockerfile
+    dockerContext: .
+    healthCheckPath: /health
+    envVars:
+      - key: NODE_ENV
+        value: production
+      - key: GEMINI_API_KEY
+        sync: false
+      - key: PINECONE_API_KEY
+        sync: false
+      - key: PINECONE_INDEX
+        value: pdfreader
