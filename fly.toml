@@ -2,7 +2,8 @@
 # Then: fly auth login && fly launch --no-deploy
 # Set secrets: fly secrets set GEMINI_API_KEY=... PINECONE_API_KEY=...
 # Deploy: fly deploy
-app = "document-reader-app"
+# Must match the app name after `fly launch` (add billing first if Fly asks).
+app = "document-reader-yadavpriya27119"
 primary_region = "iad"
 
 [build]
