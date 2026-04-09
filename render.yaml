@@ -1,13 +1,15 @@
-# Deploy on Render: Dashboard → New → Blueprint → connect repo (use this file).
-# After create, open the service → Environment → set secret values for sync:false keys.
+# Deploy on Render: New → Blueprint → connect repo. Native Node (no Docker).
+# Set secret env vars in the dashboard for sync:false keys.
 services:
   - type: web
     name: pdfreader
-    runtime: docker
-    dockerfilePath: ./Dockerfile
-    dockerContext: .
+    runtime: node
+    buildCommand: npm ci && npm run build
+    startCommand: NODE_ENV=production npm run start -w backend
     healthCheckPath: /health
     envVars:
+      - key: NODE_VERSION
+        value: "20"
       - key: NODE_ENV
         value: production
       - key: GEMINI_API_KEY
